@@ -1,291 +1,300 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en" data-type="software" data-radius="round" data-buttons="solid" data-motion>
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Praelo: Teleprompter</title>
-  <meta name="description" content="Praelo is a teleprompter for the video you are recording. The script moves while the camera runs. Pauses, silences, and stumbles can be cut. Subtitles are built from the words that remain. The file stays on the phone.">
-  <link rel="canonical" href="https://yaroshvital.github.io/praelo/">
-  <style>
-    :root {
-      --bg: #121416;
-      --surface: #1c2126;
-      --border: #3a444a;
-      --text: #f4f1ea;
-      --muted: #c5ced2;
-      --accent: #e8f54a;
-      --on-accent: #1a1d08;
-    }
-    * { box-sizing: border-box; }
-    html, body { margin: 0; background: var(--bg); color: var(--text); }
-    body {
-      font-family: "Segoe UI", system-ui, sans-serif;
-      font-size: 16px;
-      line-height: 1.5;
-      min-height: 100vh;
-    }
-    .wrap { max-width: 760px; margin: 0 auto; padding: 28px 24px 72px; }
-    header { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
-    .mark { font-weight: 600; letter-spacing: 0.01em; }
-    select {
-      appearance: none;
-      background: var(--surface);
-      color: var(--text);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 10px 36px 10px 14px;
-      font: inherit;
-      background-image: linear-gradient(45deg, transparent 50%, var(--muted) 50%), linear-gradient(135deg, var(--muted) 50%, transparent 50%);
-      background-position: calc(100% - 18px) 18px, calc(100% - 12px) 18px;
-      background-size: 6px 6px, 6px 6px;
-      background-repeat: no-repeat;
-    }
-    h1 { font-size: 40px; line-height: 1.15; font-weight: 600; margin: 56px 0 12px; letter-spacing: -0.02em; }
-    .tag { font-size: 20px; line-height: 1.4; color: var(--accent); margin: 0 0 28px; font-weight: 600; }
-    .lead { margin: 0 0 36px; max-width: 38em; }
-    .rows { display: grid; gap: 12px; margin: 0 0 36px; }
-    .row {
-      display: grid;
-      grid-template-columns: 112px 1fr;
-      gap: 16px;
-      align-items: center;
-      background: var(--surface);
-      border-radius: 16px;
-      padding: 12px 16px 12px 12px;
-    }
-    .row img {
-      width: 112px;
-      height: auto;
-      display: block;
-      border-radius: 12px;
-    }
-    .row b { display: block; font-size: 16px; margin-bottom: 4px; }
-    .row span { color: var(--muted); }
-    @media (max-width: 560px) {
-      .row { grid-template-columns: 88px 1fr; }
-      .row img { width: 88px; }
-    }
-    a.cta {
-      display: inline-flex;
-      align-items: center;
-      min-height: 48px;
-      padding: 0 20px;
-      background: var(--accent);
-      color: var(--on-accent);
-      text-decoration: none;
-      font-weight: 600;
-      border-radius: 16px;
-    }
-    a.cta:hover { filter: brightness(1.05); }
-    footer { margin-top: 28px; color: var(--muted); font-size: 14px; line-height: 1.45; }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Praelo: teleprompter for people on camera</title>
+<meta name="description" content="Praelo scrolls a script while the Android camera runs, then lists silence and stumbles so you can cut them once and keep the file on the phone.">
+<meta name="site-kind" content="software">
+<meta name="page-type" content="software">
+<meta name="theme-color" content="#121416">
+<link rel="canonical" href="https://yaroshvital.github.io/praelo/">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Praelo">
+<meta property="og:url" content="https://yaroshvital.github.io/praelo/">
+<meta property="og:title" content="Praelo: teleprompter for people on camera">
+<meta property="og:description" content="The script moves with the camera. Silence and stumbles are listed. The cut happens once, on the phone.">
+<meta property="og:image" content="https://yaroshvital.github.io/praelo/img/en/02.png">
+<meta property="og:image:width" content="1080">
+<meta property="og:image:height" content="1920">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Praelo: teleprompter for people on camera">
+<meta name="twitter:description" content="The script moves with the camera. Silence and stumbles are listed. The cut happens once, on the phone.">
+<meta name="twitter:image" content="https://yaroshvital.github.io/praelo/img/en/02.png">
+<link rel="alternate" hreflang="en" href="https://yaroshvital.github.io/praelo/">
+<link rel="alternate" hreflang="x-default" href="https://yaroshvital.github.io/praelo/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@400..700&family=Funnel+Sans:wght@400..600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/system.css">
+<link rel="stylesheet" href="assets/ui/cards.css">
+<link rel="stylesheet" href="assets/motion/motion.css">
+<link rel="stylesheet" href="assets/backgrounds/backgrounds.css">
+<link rel="stylesheet" href="assets/layout/layout.css">
+<link rel="stylesheet" href="assets/icons/icon.css">
+<style>
+:root {
+  --p-bg: #121416; --p-surface: #1c2126; --p-ink: #f4f1ea; --p-muted: #c5ced2;
+  --p-accent: #e8f54a; --p-accent-ink: #121416; --p-action: #e8f54a; --p-action-ink: #121416;
+  --p-inv-bg: #f4f1ea; --p-inv-surface: #e2dfd9; --p-inv-ink: #121416; --p-inv-muted: #5e5e5e;
+  --p-inv-accent: #121416; --p-inv-accent-ink: #f4f1ea; --p-inv-action: #121416; --p-inv-action-ink: #f4f1ea;
+  --font-display: "Funnel Display", system-ui, sans-serif;
+  --font-text: "Funnel Sans", system-ui, sans-serif;
+  --font-mono: "DM Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  --display-weight: 400;
+  --display-tracking: -0.03em;
+  --display-tracking-xl: -0.04em;
+  --ly-scale: 0.98;
+}
+html { color-scheme: dark; }
+main > section, #contact { scroll-margin-top: 88px; }
+h1, h2 { text-wrap: balance; }
+.hero__art { background:
+  radial-gradient(70% 60% at 18% 12%, color-mix(in oklab, var(--ground-surface) 80%, white), transparent 70%),
+  var(--ground-bg); }
+.hero__proof { font-size: var(--t-small); color: var(--muted); }
+.d-win { background: #121416; color: #f4f1ea; border-radius: 12px; overflow: hidden; font: 400 14px/1.4 var(--font-text);
+  box-shadow: 0 0 0 1px rgb(255 255 255 / .08), 0 30px 70px -30px rgb(0 0 0 / .8); text-align: left; min-height: 640px; }
+.d-win__bar { display: flex; align-items: center; gap: 10px; height: 40px; padding: 0 14px; border-bottom: 1px solid rgb(255 255 255 / .07); font-size: 13px; color: #c5ced2; }
+.d-win__dots { display: flex; gap: 6px; } .d-win__dots i { width: 10px; height: 10px; border-radius: 50%; background: #3a3e43; }
+.d-win__body { display: grid; grid-template-columns: 148px 1fr; }
+.d-side { padding: 14px 10px; border-right: 1px solid rgb(255 255 255 / .07); display: grid; align-content: start; gap: 2px; font-size: 13px; color: #c5ced2; }
+.d-side > span { display: flex; align-items: center; gap: 8px; height: 30px; padding: 0 8px; border-radius: 7px; }
+.d-side > span.is-on { background: rgb(255 255 255 / .07); color: #f4f1ea; font-weight: 500; }
+.d-main { padding: 16px 18px 16px 18px; padding-right: var(--ly-cut-room); display: grid; align-content: start; gap: 12px; min-width: 0; }
+.d-main__head { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.d-main__head p { font: 600 16px/1.2 var(--font-text); letter-spacing: -0.01em; margin: 0; }
+.d-card__title { margin: 0 0 8px; font: 600 14px/1.3 var(--font-text); }
+.d-rows { display: grid; border-top: 1px solid rgb(255 255 255 / .07); }
+.d-row { display: grid; grid-template-columns: minmax(0, 1fr) 72px; align-items: center; gap: 12px; padding: 10px 2px; border-bottom: 1px solid rgb(255 255 255 / .07); font-size: 13px; }
+.d-row b { display: block; font-weight: 500; color: #f4f1ea; }
+.d-row small { color: #c5ced2; font-size: 13px; }
+.d-chip { justify-self: end; display: inline-flex; align-items: center; height: 22px; padding: 0 8px; border-radius: 99px; font-size: 13px; font-weight: 500; background: #e8f54a; color: #121416; white-space: nowrap; }
+.d-chip--cut { background: transparent; color: #c5ced2; box-shadow: inset 0 0 0 1px rgb(255 255 255 / .2); }
+.hero__art > .ly-piece--note { left: var(--s-6); bottom: var(--s-6); width: 280px; z-index: 2; }
+.d-card { background: #f4f1ea; color: #121416; border-radius: 12px; padding: 14px 16px; font: 400 14px/1.4 var(--font-text); text-align: left; box-shadow: 0 16px 40px -24px rgb(0 0 0 / .6); }
+.d-card li { display: flex; justify-content: space-between; gap: 12px; padding: 7px 0; border-top: 1px solid rgb(18 20 22 / .08); }
+.d-card li:first-of-type { border-top: 0; }
+.shot { display: block; height: 460px; width: auto; max-width: 100%; object-fit: contain; object-position: top center; border-radius: var(--r-lg); }
+.shot-col { display: flex; justify-content: flex-end; }
+@media (max-width: 1023px) { .shot-col { justify-content: flex-start; margin-top: var(--s-6); } .shot { height: 420px; } }
+@media (max-width: 639px) {
+  .d-win__body { grid-template-columns: 1fr; }
+  .d-side { display: none; }
+  .hero__art > .ly-piece--note { display: none; }
+  .shot { height: 360px; }
+}
+</style>
+<script>document.documentElement.classList.add('m-enter');setTimeout(()=>document.documentElement.classList.add('m-enter-done'),700)</script>
+<script src="assets/backgrounds/backgrounds.js"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Praelo",
+  "applicationCategory": "MultimediaApplication",
+  "operatingSystem": "Android",
+  "url": "https://yaroshvital.github.io/praelo/",
+  "installUrl": "https://play.google.com/store/apps/details?id=com.vitstudio.prompter",
+  "description": "Teleprompter for people recording on camera. The script scrolls while the camera runs. Silence, repeated phrases and hesitation sounds can be cut once. The file stays on the phone.",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "Vitaly Yarosh"
+  }
+}
+</script>
 </head>
 <body>
-  <div class="wrap">
-    <header>
-      <div class="mark">Praelo</div>
-      <label>
-        <span class="visually-hidden" id="lang-label">Language</span>
-        <select id="lang" aria-labelledby="lang-label"></select>
-      </label>
-    </header>
-    <h1 id="title"></h1>
-    <p class="tag" id="tag"></p>
-    <p class="lead" id="lead"></p>
-    <div class="rows" id="rows"></div>
-    <a class="cta" id="cta" href="https://play.google.com/store/apps/details?id=com.vitstudio.prompter">Get it on Google Play</a>
-    <footer id="foot"></footer>
+<!-- software. palette: brand #121416 / #f4f1ea / #e8f54a, the app's own colours, because the dealt white-and-blue saas palettes clash with the yellow screenshots. type funnel. radius round.
+     hero collage, nav nav-mega, close close-word, footer footer-statement, rhythm dark-band, buttons solid, mark arc.
+     moments: line-carries-colour on #cuts, counter-rolls on #speed. -->
+<header class="nav">
+  <div class="wrap nav__bar">
+    <a class="skip-link" href="#top">Skip to content</a>
+    <a class="nav__logo" href="#top"><span class="mark" data-mark="arc" aria-hidden="true"></span><span translate="no">Praelo</span></a>
+    <nav class="nav__links" aria-label="Main">
+      <div class="nav__item">
+        <a class="nav__link" href="#record">Product <svg class="chev" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 4.5l3 3 3-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <div class="nav__menu">
+          <div class="wrap grid">
+            <div class="menu-col span-4">
+              <p class="t-label">On the phone</p>
+              <a href="#record">Script<span>Scrolls while the camera runs</span></a>
+              <a href="#cuts">Cut list<span>Silence, repeats, hesitations</span></a>
+              <a href="#speed">Speed<span>60 to 300 words a minute</span></a>
+            </div>
+            <div class="menu-col span-4">
+              <p class="t-label">After the take</p>
+              <a href="#cuts">Keep a row<span>Any listed row can stay</span></a>
+              <a href="#questions">Subtitles<span>Built from the words left</span></a>
+              <a href="#questions">The file<span>It stays on the phone</span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="nav__item"><a class="nav__link" href="#cuts">Cuts</a></div>
+      <div class="nav__item"><a class="nav__link" href="#questions">Questions</a></div>
+    </nav>
+    <div class="nav__actions">
+      <a class="btn btn--primary" href="https://play.google.com/store/apps/details?id=com.vitstudio.prompter">Get Praelo</a>
+    </div>
+    <button class="nav__toggle" type="button" aria-expanded="false" aria-label="Menu"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M2 5h14M2 13h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
   </div>
-  <style>.visually-hidden{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}</style>
-  <script>
-    const copy = {
-      en: {
-        label: "English",
-        title: "Teleprompter",
-        tag: "Read on camera. Cut the pauses and stumbles.",
-        lead: "Praelo is a teleprompter for the video you are recording. The script moves while the camera runs. Pauses, silences, and stumbles can be cut. Subtitles are built from the words that remain.",
-        rows: [
-          ["Teleprompter", "Speed runs from 60 to 300 words per minute. Pause stops the camera and the script together."],
-          ["Pauses", "Silence, a repeated phrase, and hesitation sounds are listed. Any row can be kept. The cut is made once, when you save."],
-          ["Subtitles", "Lines can be edited before export. Position and look are chosen on the phone."]
-        ],
-        cta: "Get it on Google Play",
-        foot: "Record in the app, or insert a clip from the gallery. The file stays on the phone."
-      },
-      ru: {
-        label: "Русский",
-        title: "Телесуфлёр",
-        tag: "Текст на камере. Тишина и запинки вырезаются.",
-        lead: "Praelo — телесуфлёр для видео, которое вы снимаете. Текст едет, пока идёт камера. Паузы, долгое молчание и запинки можно вырезать. Субтитры собираются из слов, которые остались.",
-        rows: [
-          ["Суфлёр", "Скорость от 60 до 300 слов в минуту. Пауза останавливает камеру и текст вместе."],
-          ["Паузы", "В списке тишина, повтор короткой фразы и звуки замешательства. Любую строку можно оставить. Вырезка делается один раз, при сохранении."],
-          ["Субтитры", "Строки можно поправить перед экспортом. Место и вид выбираются на телефоне."]
-        ],
-        cta: "Открыть в Google Play",
-        foot: "Снимите ролик в приложении или вставьте видео из галереи. Файл остаётся в телефоне."
-      },
-      uk: {
-        label: "Українська",
-        title: "Телесуфлер",
-        tag: "Текст на камері. Тиша й запинки вирізаються.",
-        lead: "Praelo — телесуфлер для відео, яке ви знімаєте. Текст іде, поки працює камера. Паузи, довгу тишу й запинки можна вирізати. Субтитри збираються зі слів, які лишилися.",
-        rows: [
-          ["Суфлер", "Швидкість від 60 до 300 слів за хвилину. Пауза зупиняє камеру і текст разом."],
-          ["Паузи", "До списку потрапляє тиша, повтор короткої фрази і звуки вагання. Будь-який рядок можна лишити. Виріз робиться один раз, під час збереження."],
-          ["Субтитри", "Рядки можна виправити перед експортом. Місце і вигляд обираються на телефоні."]
-        ],
-        cta: "Відкрити в Google Play",
-        foot: "Зніміть ролик у застосунку або вставте відео з галереї. Файл лишається в телефоні."
-      },
-      de: {
-        label: "Deutsch",
-        title: "Teleprompter",
-        tag: "Text vor der Kamera. Schneidet Stille und Hänger.",
-        lead: "Praelo ist ein Teleprompter für das Video, das Sie aufnehmen. Der Text läuft, während die Kamera aufnimmt. Pausen, langes Schweigen und Hänger lassen sich schneiden. Untertitel entstehen aus den Wörtern, die bleiben.",
-        rows: [
-          ["Teleprompter", "Das Tempo liegt zwischen 60 und 300 Wörtern pro Minute. Die Pause stoppt Kamera und Text zusammen."],
-          ["Pausen", "Schweigen, eine kurze Wiederholung und Zögerlaute stehen in der Liste. Jede Zeile kann bleiben. Der Schnitt erfolgt einmal, beim Speichern."],
-          ["Untertitel", "Zeilen lassen sich vor dem Export ändern. Ort und Aussehen wählen Sie am Telefon."]
-        ],
-        cta: "Bei Google Play öffnen",
-        foot: "Nehmen Sie in der App auf oder fügen Sie ein Video aus der Galerie ein. Die Datei bleibt auf dem Telefon."
-      },
-      fr: {
-        label: "Français",
-        title: "Téléprompteur",
-        tag: "Texte face caméra. Coupe silence et hésitations.",
-        lead: "Praelo est un téléprompteur pour la vidéo que vous tournez. Le texte défile pendant que la caméra tourne. Les pauses, les longs silences et les hésitations peuvent être coupés. Les sous-titres viennent des mots qui restent.",
-        rows: [
-          ["Téléprompteur", "La vitesse va de 60 à 300 mots par minute. La pause arrête la caméra et le texte ensemble."],
-          ["Pauses", "Un silence, une courte répétition et les sons d'hésitation entrent dans la liste. Chaque ligne peut être gardée. La coupe se fait une fois, à l'enregistrement."],
-          ["Sous-titres", "Les lignes se corrigent avant l'export. La place et l'aspect se choisissent sur le téléphone."]
-        ],
-        cta: "Ouvrir sur Google Play",
-        foot: "Tournez dans l'application ou insérez une vidéo de la galerie. Le fichier reste sur le téléphone."
-      },
-      es: {
-        label: "Español",
-        title: "Teleprompter",
-        tag: "Texto en cámara. Corta silencio y tropiezos.",
-        lead: "Praelo es un teleprompter para el vídeo que está grabando. El texto avanza mientras la cámara graba. Las pausas, los silencios largos y los tropiezos se pueden cortar. Los subtítulos salen de las palabras que quedan.",
-        rows: [
-          ["Teleprompter", "La velocidad va de 60 a 300 palabras por minuto. La pausa detiene la cámara y el texto a la vez."],
-          ["Pausas", "El silencio, una frase corta repetida y los sonidos de duda entran en la lista. Cualquier fila se puede conservar. El corte se hace una vez, al guardar."],
-          ["Subtítulos", "Las líneas se pueden corregir antes de exportar. El lugar y el aspecto se eligen en el teléfono."]
-        ],
-        cta: "Abrir en Google Play",
-        foot: "Grabe en la aplicación o inserte un vídeo de la galería. El archivo se queda en el teléfono."
-      },
-      pt: {
-        label: "Português",
-        title: "Teleponto",
-        tag: "Texto na câmera. Corta silêncio e hesitações.",
-        lead: "O Praelo é um teleponto para o vídeo que você está gravando. O texto anda enquanto a câmera grava. Pausas, silêncios longos e hesitações podem ser cortados. As legendas saem das palavras que ficam.",
-        rows: [
-          ["Teleponto", "A velocidade vai de 60 a 300 palavras por minuto. A pausa para a câmera e o texto juntos."],
-          ["Pausas", "O silêncio, uma frase curta repetida e os sons de hesitação entram na lista. Qualquer linha pode ficar. O corte é feito uma vez, ao salvar."],
-          ["Legendas", "As linhas podem ser corrigidas antes de exportar. O lugar e o visual são escolhidos no telefone."]
-        ],
-        cta: "Abrir no Google Play",
-        foot: "Grave no aplicativo ou insira um vídeo da galeria. O arquivo fica no telefone."
-      },
-      it: {
-        label: "Italiano",
-        title: "Gobbo",
-        tag: "Testo in camera. Taglia silenzio ed esitazioni.",
-        lead: "Praelo è un gobbo per il video che stai registrando. Il testo scorre mentre la camera gira. Le pause, i silenzi lunghi e le esitazioni si possono tagliare. I sottotitoli nascono dalle parole che restano.",
-        rows: [
-          ["Gobbo", "La velocità va da 60 a 300 parole al minuto. La pausa ferma camera e testo insieme."],
-          ["Pause", "Il silenzio, una frase corta ripetuta e i suoni di esitazione entrano nell'elenco. Ogni riga si può tenere. Il taglio avviene una volta, al salvataggio."],
-          ["Sottotitoli", "Le righe si possono correggere prima dell'export. Posizione e aspetto si scelgono sul telefono."]
-        ],
-        cta: "Apri su Google Play",
-        foot: "Registra nell'app o inserisci un video dalla galleria. Il file resta sul telefono."
-      },
-      pl: {
-        label: "Polski",
-        title: "Teleprompter",
-        tag: "Tekst przed kamerą. Wycina ciszę i zacięcia.",
-        lead: "Praelo to teleprompter do filmu, który nagrywasz. Tekst jedzie, gdy kamera pracuje. Pauzy, długie milczenie i zacięcia można wyciąć. Napisy powstają ze słów, które zostały.",
-        rows: [
-          ["Teleprompter", "Tempo wynosi od 60 do 300 słów na minutę. Pauza zatrzymuje kamerę i tekst razem."],
-          ["Pauzy", "Cisza, krótkie powtórzenie i dźwięki zawahania trafiają na listę. Każdy wiersz można zostawić. Cięcie odbywa się raz, przy zapisie."],
-          ["Napisy", "Wiersze można poprawić przed eksportem. Miejsce i wygląd wybiera się w telefonie."]
-        ],
-        cta: "Otwórz w Google Play",
-        foot: "Nagraj w aplikacji albo wstaw film z galerii. Plik zostaje w telefonie."
-      },
-      nl: {
-        label: "Nederlands",
-        title: "Teleprompter",
-        tag: "Tekst voor de camera. Knipt stilte en haperingen.",
-        lead: "Praelo is een teleprompter voor de video die je opneemt. De tekst loopt terwijl de camera draait. Pauzes, lange stilte en haperingen kun je knippen. Ondertiteling komt uit de woorden die blijven.",
-        rows: [
-          ["Teleprompter", "De snelheid loopt van 60 tot 300 woorden per minuut. Pauze stopt camera en tekst samen."],
-          ["Pauzes", "Stilte, een korte herhaling en aarzelgeluiden komen op de lijst. Elke regel kan blijven. De knip gebeurt één keer, bij het opslaan."],
-          ["Ondertiteling", "Regels kun je vóór het exporteren aanpassen. Plek en uiterlijk kies je op de telefoon."]
-        ],
-        cta: "Openen in Google Play",
-        foot: "Neem op in de app of voeg een video uit de galerij in. Het bestand blijft op de telefoon."
-      },
-      tr: {
-        label: "Türkçe",
-        title: "Teleprompter",
-        tag: "Kamerada metin. Sessizliği ve takılmayı keser.",
-        lead: "Praelo, çektiğiniz video için bir teleprompterdir. Kamera çalışırken metin akar. Duraklar, uzun sessizlik ve takılmalar kesilebilir. Altyazı, kalan sözcüklerden oluşur.",
-        rows: [
-          ["Teleprompter", "Hız dakikada 60 ile 300 sözcük arasındadır. Duraklatma kamerayı ve metni birlikte durdurur."],
-          ["Duraklar", "Sessizlik, kısa bir tekrar ve duraksama sesleri listeye girer. Her satır tutulabilir. Kesim dosya kaydedilirken bir kez yapılır."],
-          ["Altyazı", "Satırlar dışa aktarmadan önce düzeltilebilir. Yer ve görünüm telefonda seçilir."]
-        ],
-        cta: "Google Play'de aç",
-        foot: "Uygulamada çekin ya da galeriden video ekleyin. Dosya telefonda kalır."
-      }
-    };
+</header>
 
-    const select = document.getElementById("lang");
-    const order = ["en", "ru", "uk", "de", "fr", "es", "pt", "it", "pl", "nl", "tr"];
-    for (const code of order) {
-      const option = document.createElement("option");
-      option.value = code;
-      option.textContent = copy[code].label;
-      select.appendChild(option);
-    }
+<main id="top">
+  <section class="hero hero--collage" data-enter aria-labelledby="hero-h">
+    <div class="wrap"><div class="hero-text grid hero__grid">
+      <div class="hero__text span-5">
+        <h1 id="hero-h">Teleprompter for people on camera</h1>
+        <p class="hero__lead">The script moves while the camera runs. Pause stops the camera and the script together. Speed is 60 to 300 words a minute.</p>
+        <div class="btn-row">
+          <a class="btn btn--primary" href="https://play.google.com/store/apps/details?id=com.vitstudio.prompter">Get Praelo</a>
+          <a class="btn btn--secondary" href="#cuts">See the cut list</a>
+        </div>
+        <p class="hero__proof">The file stays on the phone.</p>
+      </div>
+      <div class="hero__art span-6 start-7" role="img" aria-label="Praelo cut list: script lines marked keep or cut">
+        <div class="ly-piece ly-piece--main d-win" aria-hidden="true">
+          <div class="d-win__bar"><span class="d-win__dots" aria-hidden="true"><i></i><i></i><i></i></span><span translate="no">Praelo</span> · Take</div>
+          <div class="d-win__body">
+            <div class="d-side">
+              <span>Script</span>
+              <span class="is-on">Cuts</span>
+              <span>Subtitles</span>
+            </div>
+            <div class="d-main">
+              <div class="d-main__head"><p>This take</p></div>
+              <div class="d-rows">
+                <div class="d-row"><div><b>Open on the point</b><small>Script line</small></div><span class="d-chip">Keep</span></div>
+                <div class="d-row"><div><b>Silence</b><small>Past the threshold</small></div><span class="d-chip d-chip--cut">Cut</span></div>
+                <div class="d-row"><div><b>The same line again</b><small>Short repeated phrase</small></div><span class="d-chip d-chip--cut">Cut</span></div>
+                <div class="d-row"><div><b>Hesitation sounds</b><small>Listed with the pauses</small></div><span class="d-chip">Keep</span></div>
+                <div class="d-row"><div><b>Say the offer once</b><small>Script line</small></div><span class="d-chip">Keep</span></div>
+                <div class="d-row"><div><b>Pause</b><small>Camera and script stop together</small></div><span class="d-chip d-chip--cut">Cut</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="ly-piece ly-piece--note d-card" aria-hidden="true">
+          <p class="d-card__title">Kept and cut</p>
+          <ul>
+            <li><span>Silence</span><b>Cut</b></li>
+            <li><span>Repeated phrase</span><b>Cut</b></li>
+            <li><span>Hesitation sounds</span><b>Keep</b></li>
+          </ul>
+        </div>
+      </div>
+    </div></div>
+  </section>
 
-    function render(code) {
-      const page = copy[code] || copy.en;
-      document.documentElement.lang = code === "pt" ? "pt-BR" : code;
-      document.title = "Praelo: " + page.title;
-      document.getElementById("title").textContent = page.title;
-      document.getElementById("tag").textContent = page.tag;
-      document.getElementById("lead").textContent = page.lead;
-      const shots = ["02.png", "03.png", "04.png"];
-      document.getElementById("rows").replaceChildren();
-      page.rows.forEach(([name, text], index) => {
-        const article = document.createElement("article");
-        article.className = "row";
-        const image = document.createElement("img");
-        image.src = "img/" + (copy[code] ? code : "en") + "/" + shots[index];
-        image.alt = name;
-        const body = document.createElement("div");
-        const title = document.createElement("b");
-        title.textContent = name;
-        const detail = document.createElement("span");
-        detail.textContent = text;
-        body.append(title, detail);
-        article.append(image, body);
-        document.getElementById("rows").append(article);
-      });
-      document.getElementById("cta").textContent = page.cta;
-      document.getElementById("foot").textContent = page.foot;
-      select.value = copy[code] ? code : "en";
-      history.replaceState(null, "", "#" + (copy[code] ? code : "en"));
-    }
+  <section class="section" id="record" style="--h: 1" aria-labelledby="record-h">
+    <div class="wrap grid grid--middle">
+      <div class="span-5">
+        <h2 id="record-h">The script on the picture</h2>
+        <p>Record in the app, or insert a clip from the gallery. The words sit on the picture while you talk.</p>
+      </div>
+      <div class="shot-col span-6 start-7">
+        <img class="shot" src="img/en/02.png" width="1080" height="1920" alt="Praelo reading a script over the camera on a phone" loading="lazy">
+      </div>
+    </div>
+  </section>
 
-    select.addEventListener("change", () => render(select.value));
-    const start = location.hash.slice(1);
-    render(copy[start] ? start : (navigator.language || "en").slice(0, 2));
-  </script>
+  <section class="section ground-inverse" id="cuts" style="--h: 2" data-moment="line-carries-colour" data-moment-opts='{"from":"base"}' data-moment-still="phone" aria-labelledby="cuts-h">
+    <div class="wrap grid grid--middle">
+      <div class="span-5">
+        <h2 id="cuts-h">Rows you can keep</h2>
+        <p>Silence, a repeated phrase, and hesitation sounds are listed. Keep any row. The cut is made once, when you save.</p>
+      </div>
+      <div class="shot-col span-6 start-7">
+        <img class="shot" src="img/en/03.png" width="1080" height="1920" alt="Praelo listing silence and a repeated phrase to cut" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="speed" style="--h: 1" aria-labelledby="speed-h">
+    <div class="wrap">
+      <h2 id="speed-h">Speed and the free script</h2>
+      <div class="grid" data-moment="counter-rolls" data-moment-still="phone">
+        <div class="span-4"><p class="t-stat">60</p><p class="t-small muted">words a minute, slowest</p></div>
+        <div class="span-4"><p class="t-stat">300</p><p class="t-small muted">words a minute, fastest</p></div>
+        <div class="span-4"><p class="t-stat">400</p><p class="t-small muted">characters, then the free script stops</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="questions" style="--h: 2" aria-labelledby="questions-h">
+    <div class="wrap grid">
+      <div class="span-5">
+        <h2 id="questions-h">Questions</h2>
+        <p class="muted">The limits are the ones in the app. <a class="link" href="#speed">Speed and the free script</a></p>
+      </div>
+      <div class="faq span-6 start-7">
+        <div class="faq__item">
+          <h3>Does the video leave the phone?</h3>
+          <p>No. The file stays on the phone.</p>
+        </div>
+        <div class="faq__item">
+          <h3>Where do the subtitles come from?</h3>
+          <p>From the words that remain after the cut. You can edit the lines on the phone, and set their position and look.</p>
+        </div>
+        <div class="faq__item">
+          <h3>What does the free version stop?</h3>
+          <p>The free script stops at 400 characters. It has a watermark, ads, and no burned-in subtitles. Premium removes those limits.</p>
+        </div>
+        <div class="faq__item">
+          <h3>Can I use a clip I already filmed?</h3>
+          <p>Yes. Record in the app, or insert a clip from the gallery.</p>
+        </div>
+        <div class="faq__item">
+          <h3>Will this edit a long film?</h3>
+          <p>No. Praelo cuts the listed rows once, when you save. It does not replace an editor for a long film.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer closing footer--statement" id="contact" aria-labelledby="close-h">
+  <div class="wrap">
+    <div class="closing__cta close--word">
+      <div class="section-head--split">
+        <div>
+          <h2 id="close-h">Get Praelo on your phone</h2>
+          <p class="t-lead">Free to install. The free script stops at 400 characters.</p>
+        </div>
+        <a class="btn btn--primary" href="https://play.google.com/store/apps/details?id=com.vitstudio.prompter">Get Praelo</a>
+      </div>
+      <p class="close__word" aria-hidden="true" translate="no">Praelo</p>
+    </div>
+    <div class="closing__links">
+      <div class="grid">
+        <div class="span-4 stack-4">
+          <a class="nav__logo" href="#top"><span class="mark" data-mark="arc" aria-hidden="true"></span><span translate="no">Praelo</span></a>
+          <p class="footer__lede">A teleprompter for a take you record on your phone.</p>
+        </div>
+        <div class="span-2 footer__col"><h3>Product</h3><ul><li><a href="#record">Script</a></li><li><a href="#cuts">Cuts</a></li><li><a href="#speed">Speed</a></li></ul></div>
+        <div class="span-2 footer__col"><h3>Legal</h3><ul><li><a href="privacy.html">Privacy</a></li><li><a href="terms.html">Terms</a></li></ul></div>
+      </div>
+      <div class="footer__legal">
+        <span>© 2026 <span translate="no">Praelo</span></span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<nav class="actionbar" aria-label="Install">
+  <a class="btn btn--primary" href="https://play.google.com/store/apps/details?id=com.vitstudio.prompter">Get Praelo</a>
+</nav>
+
+<script type="module" src="assets/system.js"></script>
+<script type="module" src="assets/motion/motion.js"></script>
+<script type="module" src="assets/layout/layout.js"></script>
 </body>
 </html>
