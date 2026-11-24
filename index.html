@@ -82,8 +82,16 @@ h1, h2 { text-wrap: balance; }
 .shot-col { min-width: 0; min-height: 0; height: 100%; }
 .shot { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 18%; border-radius: var(--r-lg); background: #000; }
 .d-card ul { list-style: none; margin: 0; padding: 0; }
-#speed .grid { flex: 1; align-content: end; }
-#speed .t-stat { font-size: clamp(72px, 9vw, 148px); line-height: 0.85; font-variant-numeric: tabular-nums; }
+#speed { height: auto; min-height: 0; }
+#speed > .wrap { height: auto; }
+#speed .grid { margin-top: 40px; }
+#speed .t-stat { font-size: clamp(64px, 7vw, 96px); line-height: 0.9; font-variant-numeric: tabular-nums; }
+.logo { width: 28px; height: 28px; border-radius: 8px; display: block; }
+.nav__logo .logo { width: 28px; height: 28px; box-shadow: inset 0 0 0 1px rgb(255 255 255 / .16); }
+footer.closing { height: auto; min-height: 0; padding: 72px 0 calc(32px + var(--bar)); }
+footer.closing > .wrap { display: flex; flex-direction: column; height: auto; gap: 48px; }
+.closing__cta { gap: 0; }
+.closing__links { gap: 28px; }
 .faq__item { scroll-margin-top: 96px; }
 .footer--statement .btn--primary { background: var(--p-action); color: var(--p-action-ink); }
 @media (max-width: 1023px) {
@@ -128,7 +136,7 @@ h1, h2 { text-wrap: balance; }
 <header class="nav">
   <div class="wrap nav__bar">
     <a class="skip-link" href="#top">Skip to content</a>
-    <a class="nav__logo" href="#top"><span class="mark" data-mark="arc" aria-hidden="true"></span><span translate="no">Praelo</span></a>
+    <a class="nav__logo" href="#top"><img class="logo" src="logo.svg" alt="" width="28" height="28"><span translate="no">Praelo</span></a>
     <nav class="nav__links" aria-label="Main">
       <div class="nav__item">
         <a class="nav__link" href="#record">Product <svg class="chev" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 4.5l3 3 3-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
@@ -282,12 +290,11 @@ h1, h2 { text-wrap: balance; }
         </div>
         <a class="btn btn--primary" href="https://play.google.com/store/apps/details?id=com.vitstudio.prompter">Get Praelo</a>
       </div>
-      <p class="close__word" aria-hidden="true" translate="no">Praelo</p>
     </div>
     <div class="closing__links">
       <div class="grid">
         <div class="span-4 stack-4">
-          <a class="nav__logo" href="#top"><span class="mark" data-mark="arc" aria-hidden="true"></span><span translate="no">Praelo</span></a>
+          <a class="nav__logo" href="#top"><img class="logo" src="logo.svg" alt="" width="28" height="28"><span translate="no">Praelo</span></a>
           <p class="footer__lede">A teleprompter for a take you record on your phone.</p>
         </div>
         <div class="span-2 footer__col"><h3>Product</h3><ul><li><a href="#record">Script</a></li><li><a href="#cuts">Cuts</a></li><li><a href="#speed">Speed</a></li></ul></div>
