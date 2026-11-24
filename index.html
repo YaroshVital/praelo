@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Praelo: Teleprompter</title>
+  <meta name="description" content="Praelo is a teleprompter for the video you are recording. The script moves while the camera runs. Pauses, silences, and stumbles can be cut. Subtitles are built from the words that remain. The file stays on the phone.">
+  <link rel="canonical" href="https://yaroshvital.github.io/praelo/">
+  <style>
+    :root {
+      --bg: #121416;
+      --surface: #1c2126;
+      --border: #3a444a;
+      --text: #f4f1ea;
+      --muted: #c5ced2;
+      --accent: #e8f54a;
+      --on-accent: #1a1d08;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; background: var(--bg); color: var(--text); }
+    body {
+      font-family: "Segoe UI", system-ui, sans-serif;
+      font-size: 16px;
+      line-height: 1.5;
+      min-height: 100vh;
+    }
+    .wrap { max-width: 760px; margin: 0 auto; padding: 28px 24px 72px; }
+    header { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+    .mark { font-weight: 600; letter-spacing: 0.01em; }
+    select {
+      appearance: none;
+      background: var(--surface);
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 10px 36px 10px 14px;
+      font: inherit;
+      background-image: linear-gradient(45deg, transparent 50%, var(--muted) 50%), linear-gradient(135deg, var(--muted) 50%, transparent 50%);
+      background-position: calc(100% - 18px) 18px, calc(100% - 12px) 18px;
+      background-size: 6px 6px, 6px 6px;
+      background-repeat: no-repeat;
+    }
+    h1 { font-size: 40px; line-height: 1.15; font-weight: 600; margin: 56px 0 12px; letter-spacing: -0.02em; }
+    .tag { font-size: 20px; line-height: 1.4; color: var(--accent); margin: 0 0 28px; font-weight: 600; }
+    .lead { margin: 0 0 36px; max-width: 38em; }
+    .rows { display: grid; gap: 12px; margin: 0 0 36px; }
+    .row {
+      display: grid;
+      grid-template-columns: 112px 1fr;
+      gap: 16px;
+      align-items: center;
+      background: var(--surface);
+      border-radius: 16px;
+      padding: 12px 16px 12px 12px;
+    }
+    .row img {
+      width: 112px;
+      height: auto;
+      display: block;
+      border-radius: 12px;
+    }
+    .row b { display: block; font-size: 16px; margin-bottom: 4px; }
+    .row span { color: var(--muted); }
+    @media (max-width: 560px) {
+      .row { grid-template-columns: 88px 1fr; }
+      .row img { width: 88px; }
+    }
+    a.cta {
+      display: inline-flex;
+      align-items: center;
+      min-height: 48px;
+      padding: 0 20px;
+      background: var(--accent);
+      color: var(--on-accent);
+      text-decoration: none;
+      font-weight: 600;
+      border-radius: 16px;
+    }
+    a.cta:hover { filter: brightness(1.05); }
+    footer { margin-top: 28px; color: var(--muted); font-size: 14px; line-height: 1.45; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="mark">Praelo</div>
+      <label>
+        <span class="visually-hidden" id="lang-label">Language</span>
+        <select id="lang" aria-labelledby="lang-label"></select>
+      </label>
+    </header>
+    <h1 id="title"></h1>
+    <p class="tag" id="tag"></p>
+    <p class="lead" id="lead"></p>
+    <div class="rows" id="rows"></div>
+    <a class="cta" id="cta" href="https://play.google.com/store/apps/details?id=com.vitstudio.prompter">Get it on Google Play</a>
+    <footer id="foot"></footer>
+  </div>
+  <style>.visually-hidden{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}</style>
+  <script>
+    const copy = {
+      en: {
+        label: "English",
+        title: "Teleprompter",
+        tag: "Read on camera. Cut the pauses and stumbles.",
+        lead: "Praelo is a teleprompter for the video you are recording. The script moves while the camera runs. Pauses, silences, and stumbles can be cut. Subtitles are built from the words that remain.",
+        rows: [
+          ["Teleprompter", "Speed runs from 60 to 300 words per minute. Pause stops the camera and the script together."],
+          ["Pauses", "Silence, a repeated phrase, and hesitation sounds are listed. Any row can be kept. The cut is made once, when you save."],
+          ["Subtitles", "Lines can be edited before export. Position and look are chosen on the phone."]
+        ],
+        cta: "Get it on Google Play",
+        foot: "Record in the app, or insert a clip from the gallery. The file stays on the phone."
+      },
+      ru: {
+        label: "Русский",
+        title: "Телесуфлёр",
+        tag: "Текст на камере. Тишина и запинки вырезаются.",
+        lead: "Praelo — телесуфлёр для видео, которое вы снимаете. Текст едет, пока идёт камера. Паузы, долгое молчание и запинки можно вырезать. Субтитры собираются из слов, которые остались.",
+        rows: [
+          ["Суфлёр", "Скорость от 60 до 300 слов в минуту. Пауза останавливает камеру и текст вместе."],
+          ["Паузы", "В списке тишина, повтор короткой фразы и звуки замешательства. Любую строку можно оставить. Вырезка делается один раз, при сохранении."],
+          ["Субтитры", "Строки можно поправить перед экспортом. Место и вид выбираются на телефоне."]
+        ],
+        cta: "Открыть в Google Play",
+        foot: "Снимите ролик в приложении или вставьте видео из галереи. Файл остаётся в телефоне."
+      },
+      uk: {
+        label: "Українська",
+        title: "Телесуфлер",
+        tag: "Текст на камері. Тиша й запинки вирізаються.",
+        lead: "Praelo — телесуфлер для відео, яке ви знімаєте. Текст іде, поки працює камера. Паузи, довгу тишу й запинки можна вирізати. Субтитри збираються зі слів, які лишилися.",
+        rows: [
+          ["Суфлер", "Швидкість від 60 до 300 слів за хвилину. Пауза зупиняє камеру і текст разом."],
+          ["Паузи", "До списку потрапляє тиша, повтор короткої фрази і звуки вагання. Будь-який рядок можна лишити. Виріз робиться один раз, під час збереження."],
+          ["Субтитри", "Рядки можна виправити перед експортом. Місце і вигляд обираються на телефоні."]
+        ],
+        cta: "Відкрити в Google Play",
+        foot: "Зніміть ролик у застосунку або вставте відео з галереї. Файл лишається в телефоні."
+      },
+      de: {
+        label: "Deutsch",
+        title: "Teleprompter",
+        tag: "Text vor der Kamera. Schneidet Stille und Hänger.",
+        lead: "Praelo ist ein Teleprompter für das Video, das Sie aufnehmen. Der Text läuft, während die Kamera aufnimmt. Pausen, langes Schweigen und Hänger lassen sich schneiden. Untertitel entstehen aus den Wörtern, die bleiben.",
+        rows: [
+          ["Teleprompter", "Das Tempo liegt zwischen 60 und 300 Wörtern pro Minute. Die Pause stoppt Kamera und Text zusammen."],
+          ["Pausen", "Schweigen, eine kurze Wiederholung und Zögerlaute stehen in der Liste. Jede Zeile kann bleiben. Der Schnitt erfolgt einmal, beim Speichern."],
+          ["Untertitel", "Zeilen lassen sich vor dem Export ändern. Ort und Aussehen wählen Sie am Telefon."]
+        ],
+        cta: "Bei Google Play öffnen",
+        foot: "Nehmen Sie in der App auf oder fügen Sie ein Video aus der Galerie ein. Die Datei bleibt auf dem Telefon."
+      },
+      fr: {
+        label: "Français",
+        title: "Téléprompteur",
+        tag: "Texte face caméra. Coupe silence et hésitations.",
+        lead: "Praelo est un téléprompteur pour la vidéo que vous tournez. Le texte défile pendant que la caméra tourne. Les pauses, les longs silences et les hésitations peuvent être coupés. Les sous-titres viennent des mots qui restent.",
+        rows: [
+          ["Téléprompteur", "La vitesse va de 60 à 300 mots par minute. La pause arrête la caméra et le texte ensemble."],
+          ["Pauses", "Un silence, une courte répétition et les sons d'hésitation entrent dans la liste. Chaque ligne peut être gardée. La coupe se fait une fois, à l'enregistrement."],
+          ["Sous-titres", "Les lignes se corrigent avant l'export. La place et l'aspect se choisissent sur le téléphone."]
+        ],
+        cta: "Ouvrir sur Google Play",
+        foot: "Tournez dans l'application ou insérez une vidéo de la galerie. Le fichier reste sur le téléphone."
+      },
+      es: {
+        label: "Español",
+        title: "Teleprompter",
+        tag: "Texto en cámara. Corta silencio y tropiezos.",
+        lead: "Praelo es un teleprompter para el vídeo que está grabando. El texto avanza mientras la cámara graba. Las pausas, los silencios largos y los tropiezos se pueden cortar. Los subtítulos salen de las palabras que quedan.",
+        rows: [
+          ["Teleprompter", "La velocidad va de 60 a 300 palabras por minuto. La pausa detiene la cámara y el texto a la vez."],
+          ["Pausas", "El silencio, una frase corta repetida y los sonidos de duda entran en la lista. Cualquier fila se puede conservar. El corte se hace una vez, al guardar."],
+          ["Subtítulos", "Las líneas se pueden corregir antes de exportar. El lugar y el aspecto se eligen en el teléfono."]
+        ],
+        cta: "Abrir en Google Play",
+        foot: "Grabe en la aplicación o inserte un vídeo de la galería. El archivo se queda en el teléfono."
+      },
+      pt: {
+        label: "Português",
+        title: "Teleponto",
+        tag: "Texto na câmera. Corta silêncio e hesitações.",
+        lead: "O Praelo é um teleponto para o vídeo que você está gravando. O texto anda enquanto a câmera grava. Pausas, silêncios longos e hesitações podem ser cortados. As legendas saem das palavras que ficam.",
+        rows: [
+          ["Teleponto", "A velocidade vai de 60 a 300 palavras por minuto. A pausa para a câmera e o texto juntos."],
+          ["Pausas", "O silêncio, uma frase curta repetida e os sons de hesitação entram na lista. Qualquer linha pode ficar. O corte é feito uma vez, ao salvar."],
+          ["Legendas", "As linhas podem ser corrigidas antes de exportar. O lugar e o visual são escolhidos no telefone."]
+        ],
+        cta: "Abrir no Google Play",
+        foot: "Grave no aplicativo ou insira um vídeo da galeria. O arquivo fica no telefone."
+      },
+      it: {
+        label: "Italiano",
+        title: "Gobbo",
+        tag: "Testo in camera. Taglia silenzio ed esitazioni.",
+        lead: "Praelo è un gobbo per il video che stai registrando. Il testo scorre mentre la camera gira. Le pause, i silenzi lunghi e le esitazioni si possono tagliare. I sottotitoli nascono dalle parole che restano.",
+        rows: [
+          ["Gobbo", "La velocità va da 60 a 300 parole al minuto. La pausa ferma camera e testo insieme."],
+          ["Pause", "Il silenzio, una frase corta ripetuta e i suoni di esitazione entrano nell'elenco. Ogni riga si può tenere. Il taglio avviene una volta, al salvataggio."],
+          ["Sottotitoli", "Le righe si possono correggere prima dell'export. Posizione e aspetto si scelgono sul telefono."]
+        ],
+        cta: "Apri su Google Play",
+        foot: "Registra nell'app o inserisci un video dalla galleria. Il file resta sul telefono."
+      },
+      pl: {
+        label: "Polski",
+        title: "Teleprompter",
+        tag: "Tekst przed kamerą. Wycina ciszę i zacięcia.",
+        lead: "Praelo to teleprompter do filmu, który nagrywasz. Tekst jedzie, gdy kamera pracuje. Pauzy, długie milczenie i zacięcia można wyciąć. Napisy powstają ze słów, które zostały.",
+        rows: [
+          ["Teleprompter", "Tempo wynosi od 60 do 300 słów na minutę. Pauza zatrzymuje kamerę i tekst razem."],
+          ["Pauzy", "Cisza, krótkie powtórzenie i dźwięki zawahania trafiają na listę. Każdy wiersz można zostawić. Cięcie odbywa się raz, przy zapisie."],
+          ["Napisy", "Wiersze można poprawić przed eksportem. Miejsce i wygląd wybiera się w telefonie."]
+        ],
+        cta: "Otwórz w Google Play",
+        foot: "Nagraj w aplikacji albo wstaw film z galerii. Plik zostaje w telefonie."
+      },
+      nl: {
+        label: "Nederlands",
+        title: "Teleprompter",
+        tag: "Tekst voor de camera. Knipt stilte en haperingen.",
+        lead: "Praelo is een teleprompter voor de video die je opneemt. De tekst loopt terwijl de camera draait. Pauzes, lange stilte en haperingen kun je knippen. Ondertiteling komt uit de woorden die blijven.",
+        rows: [
+          ["Teleprompter", "De snelheid loopt van 60 tot 300 woorden per minuut. Pauze stopt camera en tekst samen."],
+          ["Pauzes", "Stilte, een korte herhaling en aarzelgeluiden komen op de lijst. Elke regel kan blijven. De knip gebeurt één keer, bij het opslaan."],
+          ["Ondertiteling", "Regels kun je vóór het exporteren aanpassen. Plek en uiterlijk kies je op de telefoon."]
+        ],
+        cta: "Openen in Google Play",
+        foot: "Neem op in de app of voeg een video uit de galerij in. Het bestand blijft op de telefoon."
+      },
+      tr: {
+        label: "Türkçe",
+        title: "Teleprompter",
+        tag: "Kamerada metin. Sessizliği ve takılmayı keser.",
+        lead: "Praelo, çektiğiniz video için bir teleprompterdir. Kamera çalışırken metin akar. Duraklar, uzun sessizlik ve takılmalar kesilebilir. Altyazı, kalan sözcüklerden oluşur.",
+        rows: [
+          ["Teleprompter", "Hız dakikada 60 ile 300 sözcük arasındadır. Duraklatma kamerayı ve metni birlikte durdurur."],
+          ["Duraklar", "Sessizlik, kısa bir tekrar ve duraksama sesleri listeye girer. Her satır tutulabilir. Kesim dosya kaydedilirken bir kez yapılır."],
+          ["Altyazı", "Satırlar dışa aktarmadan önce düzeltilebilir. Yer ve görünüm telefonda seçilir."]
+        ],
+        cta: "Google Play'de aç",
+        foot: "Uygulamada çekin ya da galeriden video ekleyin. Dosya telefonda kalır."
+      }
+    };
+
+    const select = document.getElementById("lang");
+    const order = ["en", "ru", "uk", "de", "fr", "es", "pt", "it", "pl", "nl", "tr"];
+    for (const code of order) {
+      const option = document.createElement("option");
+      option.value = code;
+      option.textContent = copy[code].label;
+      select.appendChild(option);
+    }
+
+    function render(code) {
+      const page = copy[code] || copy.en;
+      document.documentElement.lang = code === "pt" ? "pt-BR" : code;
+      document.title = "Praelo: " + page.title;
+      document.getElementById("title").textContent = page.title;
+      document.getElementById("tag").textContent = page.tag;
+      document.getElementById("lead").textContent = page.lead;
+      const shots = ["02.png", "03.png", "04.png"];
+      document.getElementById("rows").replaceChildren();
+      page.rows.forEach(([name, text], index) => {
+        const article = document.createElement("article");
+        article.className = "row";
+        const image = document.createElement("img");
+        image.src = "img/" + (copy[code] ? code : "en") + "/" + shots[index];
+        image.alt = name;
+        const body = document.createElement("div");
+        const title = document.createElement("b");
+        title.textContent = name;
+        const detail = document.createElement("span");
+        detail.textContent = text;
+        body.append(title, detail);
+        article.append(image, body);
+        document.getElementById("rows").append(article);
+      });
+      document.getElementById("cta").textContent = page.cta;
+      document.getElementById("foot").textContent = page.foot;
+      select.value = copy[code] ? code : "en";
+      history.replaceState(null, "", "#" + (copy[code] ? code : "en"));
+    }
+
+    select.addEventListener("change", () => render(select.value));
+    const start = location.hash.slice(1);
+    render(copy[start] ? start : (navigator.language || "en").slice(0, 2));
+  </script>
+</body>
+</html>
